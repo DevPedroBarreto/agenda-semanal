@@ -1,6 +1,6 @@
 # 📅 Agenda Semanal
 
-> Aplicação full stack para organizar a rotina da semana: cadastre seus compromissos por dia e horário e visualize a semana inteira de uma vez.
+> Aplicação full stack para organizar a rotina da semana entre vida profissional, espiritual, atividade física e estudos: cadastre seus compromissos por dia e horário e veja a semana inteira de uma vez.
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
 ![Java](https://img.shields.io/badge/Java-21-red?logo=openjdk)
@@ -12,24 +12,32 @@
 
 ## 💡 Sobre o projeto
 
-A **Agenda Semanal** nasceu de uma necessidade real: organizar a minha rotina. A ideia é simples. Cada compromisso tem um dia, um horário de início e fim e um título:
+A **Agenda Semanal** nasceu de uma necessidade real: organizar a minha rotina e equilibrar quatro áreas da vida:
+
+| Categoria | Exemplos |
+|---|---|
+| 💼 Profissional | trabalho, reuniões, projetos |
+| 🙏 Espiritual | igreja, oração, leitura |
+| 🏃 Atividade física | academia, corrida, esportes |
+| 📚 Estudos | cursos, faculdade, programação |
+
+Cada compromisso tem um dia, um horário de início e fim, um título e uma categoria:
 
 ```
-Segunda
-07:00 - 17:00
-Trabalho
+Segunda | 07:00 - 17:00 | Trabalho | Profissional
 ```
 
-Com isso, a aplicação monta a visão da semana e avisa quando dois compromissos entram em conflito de horário.
+Com isso, a aplicação monta a visão da semana, avisa quando dois compromissos entram em conflito de horário e mostra quantas horas por semana vão para cada área.
 
 Este projeto também é o meu laboratório de estudos em desenvolvimento back-end com Java e Spring. Ele está sendo construído em etapas, do Java puro até o deploy.
 
 ## ✨ Funcionalidades
 
-- [ ] Cadastrar compromissos (dia da semana, início, fim e título)
+- [ ] Cadastrar compromissos (dia da semana, início, fim, título e categoria)
 - [ ] Listar a semana ordenada por dia e horário
 - [ ] Editar e excluir compromissos
-- [ ] Filtrar compromissos por dia
+- [ ] Filtrar compromissos por dia e por categoria
+- [ ] Resumo semanal de horas por categoria
 - [ ] Bloquear conflitos de horário no mesmo dia
 - [ ] Validação de dados (ex.: horário de fim depois do início)
 - [ ] Documentação interativa da API com Swagger
@@ -54,6 +62,8 @@ Este projeto também é o meu laboratório de estudos em desenvolvimento back-en
 |---|---|---|
 | `GET` | `/compromissos` | Lista todos os compromissos |
 | `GET` | `/compromissos?dia=SEGUNDA` | Lista os compromissos de um dia |
+| `GET` | `/compromissos?categoria=ESTUDOS` | Lista os compromissos de uma categoria |
+| `GET` | `/compromissos/resumo` | Horas da semana por categoria |
 | `GET` | `/compromissos/{id}` | Busca um compromisso pelo id |
 | `POST` | `/compromissos` | Cria um compromisso |
 | `PUT` | `/compromissos/{id}` | Atualiza um compromisso |
@@ -66,7 +76,8 @@ Exemplo de corpo para criar um compromisso:
   "titulo": "Trabalho",
   "dia": "SEGUNDA",
   "inicio": "07:00",
-  "fim": "17:00"
+  "fim": "17:00",
+  "categoria": "PROFISSIONAL"
 }
 ```
 
