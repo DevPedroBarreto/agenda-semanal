@@ -1,19 +1,21 @@
 package main;
 
 
+import java.time.LocalTime;
+
 public class Main {
     public static void main(String[] args) {
-        Compromisso compromisso1 = new Compromisso("Trabalho", "Segunda", "7:00", "17:00", "Profissional" );
-        Compromisso compromisso2 = new Compromisso("Trabalho", "Terça", "7:00", "17:00", "Profissional" );
-        Compromisso compromisso3 = new Compromisso("Trabalho", "Quarta", "7:00", "17:00", "Profissional" );
-        Compromisso compromisso4 = new Compromisso("Trabalho", "Quinta", "7:00", "17:00", "Profissional" );
-        Compromisso compromisso5 = new Compromisso("Trabalho", "Sexta", "7:00", "17:00", "Profissional" );
-        Compromisso compromisso6 = new Compromisso("Campo", "Sabado", "9:15", "11:00", "Espiritual" );
-        Compromisso compromisso7 = new Compromisso("Campo", "Domingo", "9:15", "11:00", "Espiritual" );
+        Compromisso compromisso1 = new Compromisso("Trabalho", Dia.SEGUNDA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL );
+        Compromisso compromisso2 = new Compromisso("Trabalho", Dia.TERCA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL );
+        Compromisso compromisso3 = new Compromisso("Trabalho", Dia.QUARTA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL );
+        Compromisso compromisso4 = new Compromisso("Trabalho", Dia.QUINTA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL );
+        Compromisso compromisso5 = new Compromisso("Trabalho", Dia.SEXTA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL );
+        Compromisso compromisso6 = new Compromisso("Campo", Dia.SABADO, LocalTime.parse("09:15"), LocalTime.parse("11:00"), Categoria.ESPIRITUAL );
+        Compromisso compromisso7 = new Compromisso("Campo", Dia.DOMINGO, LocalTime.parse("09:15"), LocalTime.parse("11:00"), Categoria.ESPIRITUAL );
 
-        Compromisso compromisso8 = new Compromisso("Faculdade", "Segunda", "17:45", "18:50", "Estudos" );
+        Compromisso compromisso8 = new Compromisso("Faculdade", Dia.SEGUNDA, LocalTime.parse("17:45"), LocalTime.parse("18:50"), Categoria.ESTUDOS );
 
-        Compromisso compromisso9 = new Compromisso("Bicicleta", "Terça", "17:45", "18:50", "Exercícios" );
+        Compromisso compromisso9 = new Compromisso("Bicicleta", Dia.TERCA, LocalTime.parse("17:45"), LocalTime.parse("18:50"), Categoria.ATIVIDADE_FISICA);
 
         System.out.println(compromisso1.getDia() + " | " + compromisso1.getInicio() + " - " + compromisso1.getFim() + " | " + compromisso1.getTitulo() + " | " + compromisso1.getCategoria());
         System.out.println(compromisso2.getDia() + " | " + compromisso2.getInicio() + " - " + compromisso2.getFim() + " | " + compromisso2.getTitulo() + " | " + compromisso2.getCategoria());

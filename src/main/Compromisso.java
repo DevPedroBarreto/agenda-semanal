@@ -1,13 +1,15 @@
 package main;
 
+import java.time.LocalTime;
+
 public class Compromisso {
     private String titulo;
-    private String dia;
-    private String inicio;
-    private String fim;
-    private String categoria;
+    private Dia dia;
+    private LocalTime inicio;
+    private LocalTime fim;
+    private Categoria categoria;
 
-    public Compromisso(String titulo, String dia, String inicio, String fim, String categoria) {
+    public Compromisso(String titulo, Dia dia, LocalTime inicio, LocalTime fim, Categoria categoria) {
         this.titulo = titulo;
         this.dia = dia;
         this.inicio = inicio;
@@ -18,16 +20,16 @@ public class Compromisso {
     public String getTitulo() {
         return titulo;
     }
-    public String getDia() {
+    public Dia getDia() {
         return dia;
     }
-    public String getInicio() {
+    public LocalTime getInicio() {
         return inicio;
     }
-    public String getFim() {
+    public LocalTime getFim() {
         return fim;
     }
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
