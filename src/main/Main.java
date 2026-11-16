@@ -1,10 +1,6 @@
 package main;
 
-
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -50,7 +46,7 @@ public class Main {
                     LocalTime fim = LocalTime.parse(horarioUserFim);
                     if (!fim.isAfter(inicio)){
                         System.out.println("");
-                        System.out.println("Voce cadastrou os horarios de forma errada! BURRÃO ");
+                        System.out.println("Voce cadastrou os horarios de forma errada!");
                         System.out.println("");
                         break;
                     }
@@ -66,7 +62,7 @@ public class Main {
 
                     String opcaoDia = scanner.nextLine();
                     int convertOpcaodia = Integer.parseInt(opcaoDia);
-                    if (convertOpcaodia > 7){
+                    if (convertOpcaodia < 1 || convertOpcaodia > 7){
                         System.out.println("Voce digitou uma opção invalida!");
                         break;
                     }else {
@@ -106,7 +102,7 @@ public class Main {
                         }
                     }
 
-                    System.out.println("Qual dia da Categoria?");
+                    System.out.println("Qual Categoria?");
                     System.out.println("1 - Estudos");
                     System.out.println("2 - Profissional");
                     System.out.println("3 - Espiritual");
@@ -115,7 +111,7 @@ public class Main {
 
                     String opcaoCategoria = scanner.nextLine();
                     int convertOpcaoCategoria = Integer.parseInt(opcaoCategoria);
-                    if (convertOpcaoCategoria > 4){
+                    if (convertOpcaoCategoria < 1 || convertOpcaoCategoria > 4){
                         System.out.println("Voce digitou uma opção invalida!");
                         break;
                     }else {
@@ -157,7 +153,7 @@ public class Main {
 
                     System.out.println("Digite o numero do compromisso que deseja remover");
                     for (int i = 0; i < compromisso.size(); i++) {
-                        System.out.println("Numero " + i + " " + compromisso.get(i).formatar());
+                        System.out.println("Numero " + (i + 1) + " " + compromisso.get(i).formatar());
                     }
                     System.out.print("Numero: ");
                     String removUser = scanner.nextLine();
