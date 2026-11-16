@@ -48,6 +48,12 @@ public class Main {
                     System.out.print("Digite o horario Final do compromisso: ");
                     String horarioUserFim = scanner.nextLine();
                     LocalTime fim = LocalTime.parse(horarioUserFim);
+                    if (!fim.isAfter(inicio)){
+                        System.out.println("");
+                        System.out.println("Voce cadastrou os horarios de forma errada! BURRÃO ");
+                        System.out.println("");
+                        break;
+                    }
                     System.out.println("Qual dia da semana?");
                     System.out.println("1 - Segunda");
                     System.out.println("2 - Terça");
@@ -60,41 +66,46 @@ public class Main {
 
                     String opcaoDia = scanner.nextLine();
                     int convertOpcaodia = Integer.parseInt(opcaoDia);
+                    if (convertOpcaodia > 7){
+                        System.out.println("Voce digitou uma opção invalida!");
+                        break;
+                    }else {
+                        switch (convertOpcaodia){
+                            case 1:
+                                System.out.println("Segunda");
+                                dia = Dia.SEGUNDA;
+                                break;
+                            case 2:
+                                System.out.println("Terça");
+                                dia = Dia.TERCA;
+                                break;
+                            case 3:
+                                System.out.println("Quarta");
+                                dia = Dia.QUARTA;
+                                break;
+                            case 4:
+                                System.out.println("Quinta");
+                                dia = Dia.QUINTA;
+                                break;
+                            case 5:
+                                System.out.println("Sexta");
+                                dia = Dia.SEXTA;
 
-                    switch (convertOpcaodia){
-                        case 1:
-                            System.out.println("Segunda");
-                            dia = Dia.SEGUNDA;
-                            break;
-                        case 2:
-                            System.out.println("Terça");
-                            dia = Dia.TERCA;
-                            break;
-                        case 3:
-                            System.out.println("Quarta");
-                            dia = Dia.QUARTA;
-                            break;
-                        case 4:
-                            System.out.println("Quinta");
-                            dia = Dia.QUINTA;
-                            break;
-                        case 5:
-                            System.out.println("Sexta");
-                            dia = Dia.SEXTA;
-
-                            break;
-                        case 6:
-                            System.out.println("Sabado");
-                            dia = Dia.SABADO;
-                            break;
-                        case 7:
-                            System.out.println("Domingo");
-                            dia = Dia.DOMINGO;
-                            break;
-                        default:
-                            System.out.println("Opção invalida");
-                            break;
+                                break;
+                            case 6:
+                                System.out.println("Sabado");
+                                dia = Dia.SABADO;
+                                break;
+                            case 7:
+                                System.out.println("Domingo");
+                                dia = Dia.DOMINGO;
+                                break;
+                            default:
+                                System.out.println("Opção invalida");
+                                break;
+                        }
                     }
+
                     System.out.println("Qual dia da Categoria?");
                     System.out.println("1 - Estudos");
                     System.out.println("2 - Profissional");
@@ -104,36 +115,42 @@ public class Main {
 
                     String opcaoCategoria = scanner.nextLine();
                     int convertOpcaoCategoria = Integer.parseInt(opcaoCategoria);
-
-                    switch (convertOpcaoCategoria){
-                        case 1:
-                            System.out.println("Estudos");
-                            categoria = Categoria.ESTUDOS;
-                            break;
-                        case 2:
-                            System.out.println("Profissional");
-                            categoria = Categoria.PROFISSIONAL;
-                            break;
-                        case 3:
-                            System.out.println("Espiritual");
-                            categoria = Categoria.ESPIRITUAL;
-                            break;
-                        case 4:
-                            System.out.println("Atividade Fisica");
-                            categoria = Categoria.ATIVIDADE_FISICA;
-                            break;
-                        default:
-                            System.out.println("Opção invalida");
-                            break;
+                    if (convertOpcaoCategoria > 4){
+                        System.out.println("Voce digitou uma opção invalida!");
+                        break;
+                    }else {
+                        switch (convertOpcaoCategoria){
+                            case 1:
+                                System.out.println("Estudos");
+                                categoria = Categoria.ESTUDOS;
+                                break;
+                            case 2:
+                                System.out.println("Profissional");
+                                categoria = Categoria.PROFISSIONAL;
+                                break;
+                            case 3:
+                                System.out.println("Espiritual");
+                                categoria = Categoria.ESPIRITUAL;
+                                break;
+                            case 4:
+                                System.out.println("Atividade Fisica");
+                                categoria = Categoria.ATIVIDADE_FISICA;
+                                break;
+                            default:
+                                System.out.println("Opção invalida");
+                                break;
+                        }
                     }
+
 
                     compromisso.add(new Compromisso(userCompromisso, dia, inicio, fim, categoria ));
 
                     break;
                 case 2:
                     System.out.println("LISTA COM OS COMPROMISSOS");
+                    compromisso.sort(Comparator.comparing(Compromisso::getDia).thenComparing(Compromisso::getInicio));
                     for (int i = 0; i < compromisso.size(); i++) {
-                        System.out.println("Numero " + i + " " + compromisso.get(i).formatar());
+                        System.out.println("Numero " + (i + 1) + " " + compromisso.get(i).formatar());
                     }
                     break;
                 case 3:
@@ -145,7 +162,7 @@ public class Main {
                     System.out.print("Numero: ");
                     String removUser = scanner.nextLine();
                     int convertRemovUser = Integer.parseInt(removUser);
-                    compromisso.remove(convertRemovUser);
+                    compromisso.remove(convertRemovUser - 1);
                     break;
                 case 0:
                     System.out.println("Saindo...");
