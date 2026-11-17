@@ -40,7 +40,7 @@ public class Compromisso {
         this.id = id;
     }
 
-    public void CompromissoP(){};
+    public Compromisso(){};
 
 
     public String formatar(){
