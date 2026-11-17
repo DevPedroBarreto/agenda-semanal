@@ -36,12 +36,12 @@ public class CompromissosController {
     private Long proximoId = 6L;
 
     @PostMapping("/compromissos")
-    @ResponseStatus(HttpStatus.CREATED)                  // responde 201 em vez de 200
-    public Compromisso criar(@RequestBody Compromisso novo) {  // "pegue o JSON do corpo e transforme num Lembrete"
-        novo.setId(proximoId);                          // o SERVIDOR escolhe o id
+    @ResponseStatus(HttpStatus.CREATED)
+    public Compromisso criar(@RequestBody Compromisso novo) {
+        novo.setId(proximoId);
         proximoId++;
         compromissos.add(novo);
-        return novo;                                     // devolve o lembrete criado, já com id
+        return novo;                                    
     }
 
 }
