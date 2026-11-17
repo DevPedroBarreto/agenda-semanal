@@ -1,0 +1,30 @@
+package com.pedro.agenda_semanal.controller;
+
+
+import com.pedro.agenda_semanal.model.Categoria;
+import com.pedro.agenda_semanal.model.Compromisso;
+import com.pedro.agenda_semanal.model.Dia;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+public class CompromissosController {
+    private List<Compromisso> compromissos = new ArrayList<>();
+
+    public CompromissosController(){
+        compromissos.add(new Compromisso(1L, "Trabalho", Dia.SEGUNDA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL));
+        compromissos.add(new Compromisso(1L, "Pedalar", Dia.SEGUNDA, LocalTime.parse("17:40"), LocalTime.parse("18:40"), Categoria.ATIVIDADE_FISICA));
+        compromissos.add(new Compromisso(1L, "Aula da Faculdade", Dia.SEGUNDA, LocalTime.parse("18:50"), LocalTime.parse("20:00"), Categoria.ESTUDOS));
+        compromissos.add(new Compromisso(1L, "Trabalho", Dia.TERCA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL));
+        compromissos.add(new Compromisso(1L, "Preparar parte e Reunião", Dia.TERCA, LocalTime.parse("17:40"), LocalTime.parse("20:00"), Categoria.ESPIRITUAL));
+    }
+    @GetMapping("/compromissos")
+    public List<Compromisso> Listar(){
+        return compromissos;
+    }
+
+}
