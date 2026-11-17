@@ -4,8 +4,8 @@ package com.pedro.agenda_semanal.controller;
 import com.pedro.agenda_semanal.model.Categoria;
 import com.pedro.agenda_semanal.model.Compromisso;
 import com.pedro.agenda_semanal.model.Dia;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -33,5 +33,15 @@ public class CompromissosController {
         return compromissos;
     }
 
+    private Long proximoId = 6L;
+
+    @PostMapping("/compromissos")
+    @ResponseStatus(HttpStatus.CREATED)                  // responde 201 em vez de 200
+    public Compromisso criar(@RequestBody Compromisso novo) {  // "pegue o JSON do corpo e transforme num Lembrete"
+        novo.setId(proximoId);                          // o SERVIDOR escolhe o id
+        proximoId++;
+        compromissos.add(novo);
+        return novo;                                     // devolve o lembrete criado, já com id
+    }
 
 }

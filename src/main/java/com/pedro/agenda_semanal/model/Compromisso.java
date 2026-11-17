@@ -36,6 +36,13 @@ public class Compromisso {
         return categoria;
     }
 
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public void CompromissoP(){};
+
+
     public String formatar(){
         return "["+ id +" | " + dia + " | " + inicio + " - " + fim + " | " +  titulo + " | " + categoria + "]";
     }
