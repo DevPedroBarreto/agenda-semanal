@@ -37,7 +37,7 @@ public class Compromisso {
     }
 
     public String formatar(){
-        return "["+ id + dia + " | " + inicio + " - " + fim + " | " +  titulo + " | " + categoria + "]";
+        return "["+ id +" | " + dia + " | " + inicio + " - " + fim + " | " +  titulo + " | " + categoria + "]";
     }
 
 }
