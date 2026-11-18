@@ -1,0 +1,119 @@
+{
+  "info": {
+    "_postman_id": "1a90223e-fb0d-40be-96cf-1cd4ca32dc45",
+    "name": "API Agenda",
+    "description": "This collection covers the core endpoints of the Agenda API, a REST service running locally on port 8080 that manages appointments (compromissos).\n\nIt includes requests to:\n- Retrieve all appointments (GET /compromissos)\n- Retrieve a specific appointment by ID (GET /compromissos/:id)\n- Create a new appointment with details such as title, day, start/end time, and category (POST /compromissos)\n- Test error handling by requesting a non-existent appointment ID (GET /compromissos/999)\n\nUse this collection to develop, test, and validate the appointment management features of the Agenda API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "49174196",
+    "_collection_link": "https://go.postman.co/collection/49174196-1a90223e-fb0d-40be-96cf-1cd4ca32dc45?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "todos os compromissos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/compromissos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "compromissos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "um compromisso",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/compromissos/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "compromissos",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "compromisso invalido",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/compromissos/999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "compromissos",
+            "999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "novo compromisso",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"titulo\": \"Pedalar\",\r\n  \"dia\": \"QUARTA\",\r\n  \"inicio\": \"17:40\",\r\n  \"fim\": \"18:40\",\r\n  \"categoria\": \"ATIVIDADE_FISICA\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/compromissos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "compromissos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "compromisso id novo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/compromissos/6",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "compromissos",
+            "6"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

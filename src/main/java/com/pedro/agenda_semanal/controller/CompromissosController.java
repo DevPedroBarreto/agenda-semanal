@@ -5,6 +5,7 @@ import com.pedro.agenda_semanal.model.Categoria;
 import com.pedro.agenda_semanal.model.Compromisso;
 import com.pedro.agenda_semanal.model.Dia;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
@@ -41,7 +42,17 @@ public class CompromissosController {
         novo.setId(proximoId);
         proximoId++;
         compromissos.add(novo);
-        return novo;                                    
+        return novo;
     }
+    @GetMapping("/compromissos/{id}")
+    public ResponseEntity<Compromisso> buscar(@PathVariable Long id){
+        for (int i = 0;   i < compromissos.size(); i++ ){
+            if (compromissos.get(i).getId().equals(id)){
+                return ResponseEntity.ok(compromissos.get(i));
+            }
 
+        }
+        return ResponseEntity.notFound().build();
+
+    }
 }
