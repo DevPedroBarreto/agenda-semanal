@@ -1,15 +1,17 @@
-package main;
+package com.pedro.agenda_semanal.model;
 
 import java.time.LocalTime;
 
 public class Compromisso {
+    private Long id;
     private String titulo;
     private Dia dia;
     private LocalTime inicio;
     private LocalTime fim;
     private Categoria categoria;
 
-    public Compromisso(String titulo, Dia dia, LocalTime inicio, LocalTime fim, Categoria categoria) {
+    public Compromisso(Long id, String titulo, Dia dia, LocalTime inicio, LocalTime fim, Categoria categoria) {
+        this.id = id;
         this.titulo = titulo;
         this.dia = dia;
         this.inicio = inicio;
@@ -17,6 +19,7 @@ public class Compromisso {
         this.categoria = categoria;
     }
 
+    public Long getId() {return id;}
     public String getTitulo() {
         return titulo;
     }
@@ -33,8 +36,15 @@ public class Compromisso {
         return categoria;
     }
 
+    public void setId(Long id){
+        this.id = id;
+    }
+
+    public Compromisso(){};
+
+
     public String formatar(){
-        return "[" + dia + " | " + inicio + " - " + fim + " | " +  titulo + " | " + categoria + "]";
+        return "["+ id +" | " + dia + " | " + inicio + " - " + fim + " | " +  titulo + " | " + categoria + "]";
     }
 
 }
