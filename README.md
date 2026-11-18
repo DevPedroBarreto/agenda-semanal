@@ -53,7 +53,7 @@ Este projeto também é o meu laboratório de estudos em desenvolvimento back-en
 | Banco de dados | PostgreSQL |
 | Documentação | Swagger / springdoc-openapi |
 | Testes | JUnit 5 |
-| Front-end | React + Vite |
+| Front-end | Angular |
 | Versionamento | Git e GitHub |
 
 ## 🔌 API REST (planejada)
@@ -87,7 +87,7 @@ Exemplo de corpo para criar um compromisso:
 - [ ] **Etapa 2:** API REST com Spring Boot (dados em memória)
 - [ ] **Etapa 3:** Persistência com PostgreSQL e CRUD completo
 - [ ] **Etapa 4:** Validações, regra de conflito, tratamento de erros, Swagger e testes
-- [ ] **Etapa 5:** Front-end em React consumindo a API
+- [ ] **Etapa 5:** Front-end em Angular consumindo a API
 - [ ] **Etapa 6:** Deploy da API, do banco e do front-end
 
 ## 🚀 Como executar
