@@ -12,26 +12,25 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CompromissosController {
     private List<Compromisso> compromissos = new ArrayList<>();
 
 
+    private final com.pedro.agenda_semanal.repository.CompromissoRepository repository;
 
-    public CompromissosController(){
-        compromissos.add(new Compromisso(1L, "Trabalho", Dia.SEGUNDA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL));
-        compromissos.add(new Compromisso(2L, "Pedalar", Dia.SEGUNDA, LocalTime.parse("17:40"), LocalTime.parse("18:40"), Categoria.ATIVIDADE_FISICA));
-        compromissos.add(new Compromisso(3L, "Aula da Faculdade", Dia.SEGUNDA, LocalTime.parse("18:50"), LocalTime.parse("20:00"), Categoria.ESTUDOS));
-        compromissos.add(new Compromisso(4L, "Trabalho", Dia.TERCA, LocalTime.parse("07:00"), LocalTime.parse("17:00"), Categoria.PROFISSIONAL));
-        compromissos.add(new Compromisso(5L, "Preparar parte e Reunião", Dia.TERCA, LocalTime.parse("17:40"), LocalTime.parse("20:00"), Categoria.ESPIRITUAL));
+    public CompromissosController(com.pedro.agenda_semanal.repository.CompromissoRepository repository) {
+        this.repository = repository;
     }
+
 
     @GetMapping("/compromissos")
     public List<Compromisso> listar(){
 
         compromissos.sort(Comparator.comparing(Compromisso::getDia).thenComparing(Compromisso::getInicio));
-        return compromissos;
+        return repository.findAll();
     }
 
     private Long proximoId = 6L;
@@ -42,15 +41,16 @@ public class CompromissosController {
         novo.setId(proximoId);
         proximoId++;
         compromissos.add(novo);
-        return novo;
+        return repository.save(novo);
     }
     @GetMapping("/compromissos/{id}")
     public ResponseEntity<Compromisso> buscar(@PathVariable Long id){
-        for (int i = 0;   i < compromissos.size(); i++ ){
-            if (compromissos.get(i).getId().equals(id)){
-                return ResponseEntity.ok(compromissos.get(i));
-            }
 
+
+        Optional<Compromisso> c = repository.findById(id);
+
+        if (c.isPresent()) {
+            return ResponseEntity.ok(c.get());
         }
         return ResponseEntity.notFound().build();
 
