@@ -19,6 +19,12 @@ public class CompromissoService {
             this.repository = repository;
         }
 
+        private void validarHorario(Compromisso c) {
+            if (!c.getFim().isAfter(c.getInicio())) {
+                throw new IllegalArgumentException("O fim precisa ser depois do início");
+            }
+        }
+
         public List<Compromisso> listar() {
             List<Compromisso> compromissos = repository.findAll(); // Consulta ao banco
 
@@ -31,11 +37,33 @@ public class CompromissoService {
             return repository.findById(id);
         }
 
-        public Compromisso criar(Compromisso novo) {
-            if (!novo.getFim().isAfter(novo.getInicio())) {
-                throw new IllegalArgumentException("O fim precisa ser depois do início");
-            }
+
+        public Compromisso criar(Compromisso novo, Compromisso dados) {
+
+            validarHorario(dados);
+
             return repository.save(novo);
         }
+
+        public boolean deletar(Long id) {
+
+            if (!repository.existsById(id)) {
+                return false;
+            }
+            repository.deleteById(id);
+            return true;
+        }
+
+        public Optional<Compromisso> atualizar(Long id, Compromisso dados) {
+            validarHorario(dados);                 // 1. regra primeiro (pode lançar exceção)
+
+            if (!repository.existsById(id)) {         // 2. existe?
+            return Optional.empty();              //    não: caixa vazia
+            }
+
+            dados.setId(id);                          // 3. o id da URL vai para o objeto
+            return Optional.of(repository.save(dados));   // 4. save com id = UPDATE; caixa cheia
+        }
+
 }
 

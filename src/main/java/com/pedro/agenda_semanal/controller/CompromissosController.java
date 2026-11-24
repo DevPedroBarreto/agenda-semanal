@@ -14,7 +14,7 @@ import java.util.Optional;
 @RestController
 public class CompromissosController {
 
-    private final CompromissoService service;      // não conhece mais o repository!
+    private final CompromissoService service;
 
     public CompromissosController(CompromissoService service) {
         this.service = service;
@@ -27,14 +27,23 @@ public class CompromissosController {
     }
 
     @PostMapping("/compromissos")
-    public ResponseEntity<Compromisso> criar(@RequestBody Compromisso novo) {
+    public ResponseEntity<Compromisso> criar(@RequestBody Compromisso novo, Compromisso dados) {
         try {
-            Compromisso criado = service.criar(novo);
+            Compromisso criado = service.criar(novo, dados);
             return ResponseEntity.status(HttpStatus.CREATED).body(criado);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();          
+            return ResponseEntity.badRequest().build();
         }
     }
+
+    @DeleteMapping("/compromissos/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        if (service.deletar(id)) {
+            return ResponseEntity.noContent().build();    // 204: apagou, nada para devolver
+        }
+        return ResponseEntity.notFound().build();         // 404: não existia
+    }
+
 
     @GetMapping("/compromissos/{id}")
     public ResponseEntity<Compromisso> buscar(@PathVariable Long id){
@@ -44,6 +53,19 @@ public class CompromissosController {
             return ResponseEntity.ok(c.get());
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/compromissos/{id}")
+    public ResponseEntity<Compromisso> atualizar(@PathVariable Long id, @RequestBody Compromisso dados) {
+        try {
+            Optional<Compromisso> atualizado = service.atualizar(id, dados);
+            if (atualizado.isPresent()) {
+                return ResponseEntity.ok(atualizado.get());       // 200
+            }
+            return ResponseEntity.notFound().build();             // 404
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();           // 400
+        }
     }
 
 }
