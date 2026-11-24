@@ -27,13 +27,12 @@ public class CompromissosController {
     }
 
     @PostMapping("/compromissos")
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Compromisso> criar(@RequestBody Compromisso novo) {
-        try {                                                    // "tente fazer isto..."
+        try {
             Compromisso criado = service.criar(novo);
-            return ResponseEntity.status(HttpStatus.CREATED).body(criado);      // 201
-        } catch (IllegalArgumentException e) {                   // "...se essa exceção acontecer, faça isto"
-            return ResponseEntity.badRequest().build();          // 400
+            return ResponseEntity.status(HttpStatus.CREATED).body(criado);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();          
         }
     }
 
