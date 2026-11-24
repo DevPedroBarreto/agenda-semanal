@@ -38,9 +38,9 @@ public class CompromissoService {
         }
 
 
-        public Compromisso criar(Compromisso novo, Compromisso dados) {
+        public Compromisso criar(Compromisso novo) {
 
-            validarHorario(dados);
+            validarHorario(novo);
 
             return repository.save(novo);
         }
