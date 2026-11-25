@@ -1,13 +1,26 @@
 package com.pedro.agenda_semanal.model;
 
-import java.time.LocalTime;
+import jakarta.persistence.*;
 
+import java.time.LocalTime;
+@Entity
+@Table(name = "compromissos")
 public class Compromisso {
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titulo;
+
+    @Enumerated(EnumType.STRING)
     private Dia dia;
+
     private LocalTime inicio;
     private LocalTime fim;
+
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
     public Compromisso(Long id, String titulo, Dia dia, LocalTime inicio, LocalTime fim, Categoria categoria) {
@@ -18,6 +31,7 @@ public class Compromisso {
         this.fim = fim;
         this.categoria = categoria;
     }
+    public Compromisso(){};
 
     public Long getId() {return id;}
     public String getTitulo() {
@@ -40,11 +54,6 @@ public class Compromisso {
         this.id = id;
     }
 
-    public Compromisso(){};
 
-
-    public String formatar(){
-        return "["+ id +" | " + dia + " | " + inicio + " - " + fim + " | " +  titulo + " | " + categoria + "]";
-    }
 
 }
